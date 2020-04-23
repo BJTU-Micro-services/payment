@@ -12,6 +12,10 @@ const kafkaClient = new KafkaClient();
 const consumer = new Consumer(kafkaClient, [{ topic: "payment" }, { topic: "new_order" }], {
   autoCommit: false,
 });
+consumer.on("error", error => {
+  console.error("Consumer error:", error);
+})
+
 const producer = new HighLevelProducer(kafkaClient);
 
 consumer.on("message", (message: Message) => {
