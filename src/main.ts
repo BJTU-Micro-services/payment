@@ -59,6 +59,10 @@ async function pay(message: {
     const orders = await getOrders();
     const order = orders.find((i) => i.ticket_id === message.ticket_id);
 
+    if (order === undefined) {
+      return;
+    }
+
     if (new Date() > order.expiry) {
       return;
     }
