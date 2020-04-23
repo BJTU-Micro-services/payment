@@ -9,7 +9,7 @@ import redisClient from "./db";
 import { Order } from "./data";
 
 const kafkaClient = new KafkaClient();
-const consumer = new Consumer(kafkaClient, [{ topic: "payment" }], {
+const consumer = new Consumer(kafkaClient, [{ topic: "payment" }, { topic: "new_order" }], {
   autoCommit: false,
 });
 const producer = new HighLevelProducer(kafkaClient);
